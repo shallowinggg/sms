@@ -1,0 +1,38 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'checkstyle'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: 'checkstyle'
+    apply plugin: 'idea'
+
+    group = 'io.github.shallowinggg'
+    version = '0.0.1'
+    sourceCompatibility = '1.8'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencyManagement {
+        dependencies {
+            dependency "com.google.code.findbugs:jsr305:3.0.2"
+        }
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:2.4.5")
+        }
+    }
+
+    checkstyle {
+        toolVersion = "8.36.2"
+        configDirectory.set(rootProject.file("src/checkstyle"))
+    }
+
+}
+
