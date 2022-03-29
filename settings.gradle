@@ -9,5 +9,7 @@
 
 rootProject.name = 'sms'
 include 'business'
-include 'web'
+include 'application'
+include 'api'
+include 'admin'
 

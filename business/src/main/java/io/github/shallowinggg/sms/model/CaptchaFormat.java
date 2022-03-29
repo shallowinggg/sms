@@ -1,5 +1,7 @@
 package io.github.shallowinggg.sms.model;
 
+import io.github.shallowinggg.sms.utils.ImageUtils;
+
 /**
  * @author ding shimin
  */
@@ -17,7 +19,12 @@ public enum CaptchaFormat {
     IMAGE {
         @Override
         public Captcha build(String code) {
-            return null;
+            try {
+                byte[] image = ImageUtils.buildImage(120, 40, code);
+                return Captcha.forImage(image);
+            } catch (Exception e) {
+                return null;
+            }
         }
     },
 

@@ -10,6 +10,7 @@ import javax.persistence.*;
  * @author ding shimin
  */
 @Entity
+@Table(name = "verification_configs")
 public class VerificationConfig {
 
     @Id
@@ -32,7 +33,7 @@ public class VerificationConfig {
     private boolean needCaptcha;
 
     /**
-     * captcha格式
+     * captcha形式
      * 1: 图片
      * 2: 语音
      */
@@ -42,7 +43,7 @@ public class VerificationConfig {
     /**
      * 每天短信验证码最大发送次数
      */
-    private int maxVerifyCount;
+    private int maxSendCount;
 
     /**
      * web hook
@@ -58,6 +59,10 @@ public class VerificationConfig {
 
     public boolean isNeedCaptcha() {
         return this.needCaptcha;
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**
@@ -99,10 +104,10 @@ public class VerificationConfig {
         return this;
     }
 
-    public VerificationConfig maxVerifyCount(int maxVerifyCount) {
-        Preconditions.checkArgument(maxVerifyCount > 0, "maxVerifyCount must be positive");
+    public VerificationConfig maxSendCount(int maxSendCount) {
+        Preconditions.checkArgument(maxSendCount > 0, "maxSendCount must be positive");
 
-        this.maxVerifyCount = maxVerifyCount;
+        this.maxSendCount = maxSendCount;
         return this;
     }
 
@@ -112,4 +117,5 @@ public class VerificationConfig {
         this.callback = callback;
         return this;
     }
+
 }

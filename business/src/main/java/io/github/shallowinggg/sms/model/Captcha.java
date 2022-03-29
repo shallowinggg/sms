@@ -5,7 +5,28 @@ package io.github.shallowinggg.sms.model;
  */
 public class Captcha {
 
-    private String format;
+    private final String format;
 
-    private byte[] content;
+    private final byte[] content;
+
+    public Captcha(String format, byte[] content) {
+        this.format = format;
+        this.content = content;
+    }
+
+    public static Captcha forImage(byte[] content) {
+        return new Captcha("image", content);
+    }
+
+    public static Captcha forVoice(byte[] content) {
+        return new Captcha("voice", content);
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
 }
